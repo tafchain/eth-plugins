@@ -1,0 +1,20 @@
+version: "3"
+services:
+  eth-plugin-v2:
+    build:
+      context: ""
+      dockerfile: Dockerfile
+    image: eth-plugin-v2:latest
+    container_name: eth-plugin-v2
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Shanghai
+    env_file:
+      - conf.env
+    volumes:
+      - ./log:/eth/log
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
